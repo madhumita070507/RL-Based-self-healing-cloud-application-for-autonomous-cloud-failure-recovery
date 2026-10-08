@@ -115,7 +115,7 @@ from the **Google cluster trace 2011** (Borg, `task_usage` table):
 
 - **Source data.** `data_analysis/fetch_google_trace.py` downloads parts 0–35 and reduces
   each to 5-minute CPU totals per job. `data_analysis/build_trace_series.py` sums them into
-  the cluster's CPU demand per window: **600 windows (2.08 days), no gaps.** The demand
+  the cluster's CPU demand per window: **600 windows (2.05 days), no gaps.** The demand
   varies from 0.70× to 1.40× its mean, and the lag-1 autocorrelation is 0.93.
 - **Load.** `load = base_load × trace[t]`, normalised to mean 1 on the training split,
   with small mean-reverting noise (σ = 0.03) and, in TraceFaults, the same faults as
@@ -517,7 +517,7 @@ reports.
 | Agarwal, Rodriguez, Buyya — *Deep recurrent RL for serverless autoscaling*, IEEE TSC 2024 | PPO + LSTM | Threshold-based autoscaling, plain PPO | Simulated FaaS | +18% throughput vs threshold rules |
 | Rzadca et al. — *Autopilot*, EuroSys 2020 (Google) | ML recommenders + tuned heuristics (not RL) | Manual limits | Google's Borg fleet | 23% vs 46% slack; 10× fewer OOM-impacted jobs |
 | Levy et al. — *Narya*, OSDI 2020 (Microsoft Azure) | Failure prediction + RL-style online action selection | Previous static mitigation | Azure production | 26% fewer VM interruptions |
-| Prodanov et al. — *MARLISE*, IEEE CLOUD 2025 | Multi-agent DQN / PPO | Heuristic scaling | Edge-cloud microservices | Better resource efficiency at the same response time |
+| *MARLISE* — Multi-agent RL-based In-place Scaling Engine for Edge-cloud Systems, 2025 (arXiv:2507.07671) | Multi-agent DQN / PPO, one agent per microservice, in-place (vertical) scaling | Autopilot-style heuristic | Edge-cloud microservices | Lower response times and fewer SLO violations than the heuristic, while allocating more CPU |
 | Fang, Gao — *Collaborative MARL for elastic cloud scaling*, 2025 (arXiv:2507.00550) | Multi-agent RL, centralised training / decentralised execution | Unspecified existing methods | Multi-tenant, bursty load | Better utilisation, SLA violations and scheduling latency |
 | Garí et al. — *RL-based application autoscaling in the cloud: a survey*, 2020 (arXiv:2001.09957) | Survey | – | – | RL suits autoscaling because policies adapt to uncertain, changing load |
 
